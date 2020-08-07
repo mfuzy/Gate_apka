@@ -23,7 +23,7 @@ const App: React.SFC = () => {
     <div>
       <p>message: {message}</p>
       {logged ? (
-        <Main />
+        <Main changeLogged={changeLogged} changeMessage={changeMessage} />
       ) : (
         <Login changeLogged={changeLogged} changeMessage={changeMessage} />
       )}
