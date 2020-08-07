@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Main from "./components/Main";
+import Login from "./components/Login";
 
-function App() {
+const App: React.SFC = () => {
+  //state
+  const [logged, setLogged] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+
+  //changeLogged
+  const changeLogged = () => {
+    setLogged(prev => !prev);
+  };
+
+  //changeMessage
+  const changeMessage = (message: string) => {
+    setMessage(message);
+  };
+
+  //template
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>message: {message}</p>
+      {logged ? (
+        <Main />
+      ) : (
+        <Login changeLogged={changeLogged} changeMessage={changeMessage} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
