@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import "./App.css";
-import Main from "./components/Main";
+import Main from "./components/Main/Main";
 import Login from "./components/Login";
 
 const App: React.SFC = () => {
   //state
   const [logged, setLogged] = useState<boolean>(false);
+  const [logName, setLogName] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
   //changeLogged
   const changeLogged = () => {
     setLogged(prev => !prev);
+  };
+
+  //changeLogName
+  const changeLogname = (name: string) => {
+    setLogName(name);
   };
 
   //changeMessage
@@ -23,9 +29,17 @@ const App: React.SFC = () => {
     <div>
       <p>message: {message}</p>
       {logged ? (
-        <Main changeLogged={changeLogged} changeMessage={changeMessage} />
+        <Main
+          changeLogged={changeLogged}
+          changeMessage={changeMessage}
+          logName={logName}
+        />
       ) : (
-        <Login changeLogged={changeLogged} changeMessage={changeMessage} />
+        <Login
+          changeLogged={changeLogged}
+          changeMessage={changeMessage}
+          changeLogname={changeLogname}
+        />
       )}
     </div>
   );

@@ -3,11 +3,12 @@ import React, { useRef } from "react";
 export interface LoginProps {
   changeLogged: () => void;
   changeMessage: (message: string) => void;
+  changeLogname: (name: string) => void;
 }
 
 const Login: React.SFC<LoginProps> = props => {
   //destructuring props
-  const { changeLogged, changeMessage } = props;
+  const { changeLogged, changeMessage, changeLogname } = props;
 
   //refs
   const inpMeno = useRef<HTMLInputElement>(null);
@@ -21,8 +22,9 @@ const Login: React.SFC<LoginProps> = props => {
       const meno = inpMeno.current.value;
       const heslo = inpHeslo.current.value;
 
-      if (meno === "demo.user" && heslo === "secret") {
+      if (meno === "1" && heslo === "1") {
         changeLogged();
+        changeLogname(meno);
         changeMessage("");
       } else {
         changeMessage("nesprávne meno, alebo heslo");
