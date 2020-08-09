@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Main from "./components/Main/Main";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 
 const App: React.SFC = () => {
   //state
