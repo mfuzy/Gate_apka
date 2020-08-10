@@ -38,25 +38,28 @@ const Main: React.SFC<MainProps> = props => {
   };
 
   //deleteItem
-  const deleteItem = (obj: any) => {
+  const deleteItem = (
+    obj: any,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     if (items !== null) {
+      e.stopPropagation();
       const newItems: any = items.filter((item: any) => item !== obj);
       setItems(newItems);
     }
   };
 
   //handlePieces
-  const handlePieces = (obj: any) => (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handlePieces = (e: React.ChangeEvent<HTMLInputElement>, obj: any) => {
     if (items !== null) {
-      const newItems = items.map(item => {
-        if (obj === item) {
-          return { ...obj, pieces: e.target.value };
-        } else {
-          return item;
-        }
-      });
+      const val = +e.target.value;
+
+      if (val < 0) {
+        return;
+      }
+      const newItems = items.map(item =>
+        obj === item ? { ...obj, pieces: val } : item
+      );
       setItems(newItems);
     }
   };

@@ -11,15 +11,30 @@ export interface TableProps {
     pieces: number;
     url: string;
   }[];
+  actualItem: any;
   addItem: (newItem: any) => void;
-  deleteItem: (obj: any) => void;
-  handlePieces: (obj: any) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+  deleteItem: (
+    obj: any,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
+  handlePieces: (e: React.ChangeEvent<HTMLInputElement>, obj: any) => void;
+  changeActual: (
+    obj: any,
+    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>
+  ) => void;
 }
 
 //component Table
 const Table: React.SFC<TableProps> = props => {
   //destructuring props
-  const { items, addItem, deleteItem, handlePieces } = props;
+  const {
+    items,
+    actualItem,
+    addItem,
+    deleteItem,
+    handlePieces,
+    changeActual
+  } = props;
 
   //refs
   const inpId = useRef<HTMLInputElement>(null);
@@ -70,23 +85,33 @@ const Table: React.SFC<TableProps> = props => {
           <tbody>
             {items.map(item => {
               return (
-                <tr key={item.id}>
+                <tr
+                  key={item.id}
+                  className={
+                    "table-row " + (item === actualItem ? "active" : "")
+                  }
+                  onClick={e => {
+                    changeActual(item, e);
+                  }}
+                >
                   <td>{item.title}</td>
                   <td>{item.label}</td>
                   <td>
                     <input
                       type="number"
                       value={item.pieces}
-                      onChange={handlePieces(item)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        handlePieces(e, item);
+                      }}
                     />
                   </td>
                   <td>
                     <button
                       onClick={e => {
-                        deleteItem(item);
+                        deleteItem(item, e);
                       }}
                     >
-                      odstráň
+                      vymaž
                     </button>
                   </td>
                 </tr>
