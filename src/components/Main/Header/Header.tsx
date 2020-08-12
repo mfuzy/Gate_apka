@@ -5,7 +5,7 @@ import Logout from "./Logout";
 
 export interface HeaderProps {
   changeLogged: () => void;
-  changeMessage: (message: string) => void;
+  changeMessage: (message: any) => void;
   logName: string;
 }
 
@@ -13,7 +13,6 @@ const Header: React.SFC<HeaderProps> = props => {
   const { changeLogged, changeMessage, logName } = props;
   return (
     <header>
-      <h2>header</h2>
       <PopupMenu />
       <Logout
         changeLogged={changeLogged}

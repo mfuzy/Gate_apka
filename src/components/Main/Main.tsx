@@ -6,7 +6,7 @@ import simRest from "../../items.json";
 
 export interface MainProps {
   changeLogged: () => void;
-  changeMessage: (message: string) => void;
+  changeMessage: (message: any) => void;
   logName: string;
 }
 
@@ -26,11 +26,21 @@ const Main: React.SFC<MainProps> = props => {
       }[]
     | null
   >(null);
+  const [actualItem, setActualItem] = useState<any>(null);
 
   //simulacia nacitania z REST
   useEffect(() => {
     setItems(simRest.items);
+    setActualItem(simRest.items[0]);
   }, []);
+
+  //changeActual (pre Table)
+  const changeActual = (
+    obj: any,
+    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>
+  ) => {
+    setActualItem(obj);
+  };
 
   //addItem
   const addItem = (newItem: any) => {
@@ -46,6 +56,9 @@ const Main: React.SFC<MainProps> = props => {
       e.stopPropagation();
       const newItems: any = items.filter((item: any) => item !== obj);
       setItems(newItems);
+      if (obj === actualItem) {
+        setActualItem(null);
+      }
     }
   };
 
@@ -66,7 +79,7 @@ const Main: React.SFC<MainProps> = props => {
 
   //template
   return (
-    <div>
+    <div className="main">
       <Header
         changeLogged={changeLogged}
         changeMessage={changeMessage}
@@ -76,6 +89,8 @@ const Main: React.SFC<MainProps> = props => {
       {items ? (
         <Article
           items={items}
+          actualItem={actualItem}
+          changeActual={changeActual}
           addItem={addItem}
           deleteItem={deleteItem}
           handlePieces={handlePieces}

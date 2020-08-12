@@ -12,12 +12,22 @@ const Photo: React.SFC<PhotoProps> = props => {
   const { actualItem } = props;
 
   //template
-  return (
-    <div>
-      <img src={actualItem.url} alt={actualItem.title} />
-      <p>code: {actualItem.code}</p>
-    </div>
-  );
+  if (actualItem) {
+    return (
+      <div className="photo">
+        <h3>Obrázok</h3>
+        <img src={actualItem.url} alt={actualItem.title} />
+        <br />
+        <span className="code">kód: {actualItem.code}</span>
+      </div>
+    );
+  } else {
+    return (
+      <div className="photo">
+        <h3>položka vymazaná</h3>
+      </div>
+    );
+  }
 };
 
 export default Photo;

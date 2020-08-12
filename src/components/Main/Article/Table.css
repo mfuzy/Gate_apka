@@ -1,7 +1,86 @@
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+  background: #d94e41;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  transition: all 400ms ease;
+}
+
+.table-container button:hover {
+  background: #dd695f;
+}
+
+/*
+table-items
+*/
+
+.table-items td,
+.table-items th {
+  border: 1px solid black;
+  padding: 0.3em 0.6em;
+}
+
+.table-items th {
+  background: #395953;
+  padding: 0.6em;
+  color: white;
+}
+
+.table-items input {
+  width: 60px;
+  padding: 0.3em;
+}
+
+/*
+.table-create
+*/
+
+.table-create {
+  margin-top: 25px;
+}
+
+.table-create input {
+  width: 280px;
+  padding: 0.3em;
+}
+
+.table-create td,
+.table-create th {
+  padding: 0.3em;
+}
+
+.table-create .td-btn {
+  text-align: center;
+}
+
 .table-row {
   cursor: pointer;
 }
 
 .active {
-  color: red;
+  background: #f2bb9b;
+}
+
+/*
+media queries
+*/
+
+@media (max-width: 440px) {
+  .table-create input {
+    width: 200px;
+  }
+}
+
+@media (min-width: 735px) {
+  .table-container {
+    margin-bottom: 80px;
+    flex-basis: 420px;
+  }
 }

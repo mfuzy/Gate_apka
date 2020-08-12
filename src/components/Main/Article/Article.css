@@ -1,0 +1,21 @@
+article {
+  margin-top: 20px;
+}
+
+h3 {
+  text-align: center;
+}
+
+@media (max-width: 440px) {
+  article {
+    font-size: 0.8em;
+  }
+}
+
+@media (min-width: 735px) {
+  article {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}

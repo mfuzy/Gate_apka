@@ -2,31 +2,38 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { MdMenu } from "react-icons/md";
+import "./PopupMenu.css";
 
 export interface MenuProps {}
 
 const PopMenu: React.SFC<MenuProps> = props => {
+  //state
   const [anchorEl, setAnchorEl] = React.useState<
     (EventTarget & HTMLButtonElement) | null
   >(null);
 
+  //handleClick
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     setAnchorEl(event.currentTarget);
   };
 
+  //handleClose
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  //template
   return (
-    <div>
+    <div className="popup">
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
       >
-        Menu
+        <MdMenu color="white" size="2rem" />
       </Button>
       <Menu
         id="simple-menu"

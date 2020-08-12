@@ -1,0 +1,9 @@
+.popup {
+  float: left;
+  margin-left: 2%;
+  transition: all 400ms ease;
+}
+
+.popup:hover {
+  background: #b81651;
+}

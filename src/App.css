@@ -1,0 +1,29 @@
+.app {
+  height: 100%;
+}
+
+.message {
+  background: rgb(151, 245, 159);
+  color: rgb(6, 107, 6);
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 15px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.error {
+  background: rgb(235, 181, 181);
+  color: rgb(196, 12, 12);
+}
+
+/*
+media queries
+*/
+@media (max-width: 490px) {
+  .message {
+    font-size: 0.9em;
+  }
+}

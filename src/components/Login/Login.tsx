@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
+import "./Login.css";
 
 export interface LoginProps {
   changeLogged: () => void;
-  changeMessage: (message: string) => void;
+  changeMessage: (message: any) => void;
   changeLogname: (name: string) => void;
 }
 
@@ -22,29 +23,46 @@ const Login: React.SFC<LoginProps> = props => {
       const meno = inpMeno.current.value;
       const heslo = inpHeslo.current.value;
 
-      if (meno === "1" && heslo === "1") {
+      if (meno === "demo.user" && heslo === "secret") {
         changeLogged();
         changeLogname(meno);
-        changeMessage("");
+        changeMessage(null);
+      } else if (!meno || !heslo) {
+        changeMessage({ text: "Vyplň meno aj heslo.", error: true });
       } else {
-        changeMessage("nesprávne meno, alebo heslo");
+        changeMessage({ text: "Nesprávne meno, alebo heslo.", error: true });
       }
     }
   };
 
   //template
   return (
-    <div>
-      <h2>Login</h2>
-      <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="meno">Meno: </label>
-        <input type="text" id="meno" ref={inpMeno} autoFocus />
-        <br />
-        <label htmlFor="heslo">Heslo: </label>
-        <input type="text" id="heslo" ref={inpHeslo} />
-        <br />
-        <button type="submit">odošli</button>
-      </form>
+    <div className="login-container">
+      <div className="login">
+        <h1>Prihlásenie</h1>
+        <form action="" onSubmit={handleSubmit}>
+          <label htmlFor="meno">Meno</label>
+          <br />
+          <input
+            type="text"
+            id="meno"
+            ref={inpMeno}
+            autoFocus
+            placeholder="zadaj meno"
+          />
+          <br />
+          <label htmlFor="heslo">Heslo</label>
+          <br />
+          <input
+            type="text"
+            id="heslo"
+            ref={inpHeslo}
+            placeholder="zadaj heslo"
+          />
+          <br />
+          <button type="submit">Prihlásiť sa</button>
+        </form>
+      </div>
     </div>
   );
 };

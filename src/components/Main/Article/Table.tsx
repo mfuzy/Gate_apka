@@ -63,18 +63,21 @@ const Table: React.SFC<TableProps> = props => {
         url: inpUrl.current.value
       };
       addItem(itemToCreate);
+
+      inpTitle.current.value = "";
+      inpCode.current.value = "";
+      inpLabel.current.value = "";
+      inpPieces.current.value = "";
+      inpUrl.current.value = "";
     }
   };
 
   //template
   return (
-    <div>
-      <div>
-        <table
-          style={{
-            border: "1px solid black"
-          }}
-        >
+    <div className="table-container">
+      <div className="table-items">
+        <h3>Tabuľka položiek</h3>
+        <table>
           <thead>
             <tr>
               <th>title</th>
@@ -121,8 +124,8 @@ const Table: React.SFC<TableProps> = props => {
         </table>
       </div>
 
-      <div>
-        <h3>Vytvor novú položku:</h3>
+      <div className="table-create">
+        <h3>Vytvor novú položku</h3>
         <table>
           <tbody>
             <tr>
@@ -180,7 +183,7 @@ const Table: React.SFC<TableProps> = props => {
             </tr>
 
             <tr>
-              <td>
+              <td colSpan={2} className="td-btn">
                 <button onClick={handleCreate}>vytvor</button>
               </td>
             </tr>

@@ -1,0 +1,11 @@
+header {
+  background: #a6033f;
+  padding: 0 10px;
+  line-height: 3em;
+}
+
+header:after {
+  content: " ";
+  display: table;
+  clear: both;
+}

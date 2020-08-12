@@ -1,8 +1,9 @@
 import React from "react";
+import "./Logout.css";
 
 export interface LogoutProps {
   changeLogged: () => void;
-  changeMessage: (message: string) => void;
+  changeMessage: (message: any) => void;
   logName: string;
 }
 
@@ -12,14 +13,16 @@ const Logout: React.SFC<LogoutProps> = props => {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     changeLogged();
-    changeMessage("Boli ste úspešne odhlásený");
+    changeMessage({ text: "Boli ste úspešne odhlásený.", error: false });
   };
 
   //template
   return (
-    <div>
-      <h2>Logout ({logName})</h2>
-      <button onClick={handleClick}>X</button>
+    <div className="logout">
+      <span className="logout-name">({logName})</span>{" "}
+      <button className="logout-button" onClick={handleClick}>
+        logout
+      </button>
     </div>
   );
 };

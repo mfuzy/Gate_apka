@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Table from "./Table";
 import Photo from "./Photo";
 import "./Article.css";
@@ -13,6 +13,11 @@ export interface ArticleProps {
     pieces: number;
     url: string;
   }[];
+  actualItem: any;
+  changeActual: (
+    obj: any,
+    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>
+  ) => void;
   addItem: (newItem: any) => void;
   deleteItem: (
     obj: any,
@@ -24,25 +29,29 @@ export interface ArticleProps {
 //component
 const Article: React.SFC<ArticleProps> = props => {
   //destructuring props
-  const { items, addItem, deleteItem, handlePieces } = props;
+  const {
+    items,
+    actualItem,
+    changeActual,
+    addItem,
+    deleteItem,
+    handlePieces
+  } = props;
 
   //state
-  const [actualItem, setActualItem] = useState<any>(items[0]);
-
-  //changeActual (pre Table)
-  const changeActual = (
-    obj: any,
-    e: React.MouseEvent<HTMLTableRowElement, MouseEvent>
-  ) => {
-    setActualItem(obj);
-  };
 
   //getActualItem (pre Photo)
-  const getActualItem = () => ({
-    title: actualItem.title,
-    url: actualItem.url,
-    code: actualItem.code
-  });
+  const getActualItem = () => {
+    if (actualItem) {
+      return {
+        title: actualItem.title,
+        url: actualItem.url,
+        code: actualItem.code
+      };
+    } else {
+      return null;
+    }
+  };
 
   //template
   return (
@@ -55,6 +64,7 @@ const Article: React.SFC<ArticleProps> = props => {
         handlePieces={handlePieces}
         changeActual={changeActual}
       />
+
       <Photo actualItem={getActualItem()} />
     </article>
   );

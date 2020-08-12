@@ -7,7 +7,7 @@ const App: React.SFC = () => {
   //state
   const [logged, setLogged] = useState<boolean>(false);
   const [logName, setLogName] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<any>(null);
 
   //changeLogged
   const changeLogged = () => {
@@ -20,14 +20,18 @@ const App: React.SFC = () => {
   };
 
   //changeMessage
-  const changeMessage = (message: string) => {
+  const changeMessage = (message: any) => {
     setMessage(message);
   };
 
   //template
   return (
-    <div>
-      <p>message: {message}</p>
+    <div className="app">
+      {message && (
+        <div className={"message " + (message.error ? "error" : "")}>
+          {message.text}
+        </div>
+      )}
       {logged ? (
         <Main
           changeLogged={changeLogged}
